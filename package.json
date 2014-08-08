@@ -1,0 +1,15 @@
+{
+  "name": "congress_sponsor",
+  "version": "0.0.0",
+  "description": "Join visualization between political party time api and campaign donor logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Mike Nolan",
+  "license": "GPLv3",
+  "dependencies": {
+    "express": "~4.8.2",
+    "compress": "~0.1.9"
+  }
+}

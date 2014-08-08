@@ -1,0 +1,30 @@
+{
+  "name": "congress_sponsor",
+  "version": "0.0.0",
+  "authors": [
+    "Mike Nolan <me@michael-nolan.com>"
+  ],
+  "description": "Show the main campaign contributors of congress people",
+  "license": "GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "main": "index.html",
+  "keywords": [
+    "congress",
+    "government",
+    "open",
+    "data"
+  ],
+  "dependencies": {
+    "leaflet-omnivore": "git://github.com/mapbox/leaflet-omnivore.git#~0.2.0",
+    "leaflet": "~0.7.3",
+    "mapboxjs": "~1.6.1",
+    "leaflet-sidebar": "~0.1.5",
+    "cd113": "git@github.com:geobabbler/cd113.git"
+  }
+}
