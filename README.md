@@ -11,4 +11,4 @@ For our front end dependencies, we use `bower`. `cd static/` and run `bower inst
 
 Running the Server
 ------------------
-To run the server run `node index.js`
+To run the server run `node server.js`
