@@ -30,8 +30,7 @@ router.get('/getLegislators', function (req, res) {
         });
     })
     .on('error', function (e) {
-        console.log("Got error: " + e.message)
-        console.log(e);
+        console.log("Got error: " + e.message);
     });
 });
 

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="moneyGateApp">
     <head>
-        <title>Represent Me</title>
+        <title>MoneyGate</title>
         <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
         <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
+    <body ng-controller="MapCtrl">
         <div id="map"></div>
         <div id="sidebar">
-            <h1>leaflet-sidebar</h1>
+            <div ng-repeat="legislator in legislators">
+                <h1>{{legislator.first_name}} {{legislator.last_name}}</h2>
+            </div>
         </div>
     </body>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/leaflet/dist/leaflet.js"></script>
     <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
     <script src="bower_components/leaflet-omnivore/leaflet-omnivore.min.js"></script>

@@ -25,6 +25,7 @@
     "leaflet": "~0.7.3",
     "mapboxjs": "~1.6.1",
     "leaflet-sidebar": "~0.1.5",
-    "cd113": "git@github.com:geobabbler/cd113.git"
+    "cd113": "git@github.com:geobabbler/cd113.git",
+    "angular": "~1.2.21"
   }
 }
