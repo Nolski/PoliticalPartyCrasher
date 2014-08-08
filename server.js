@@ -9,6 +9,14 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 
+/**
+ * API endpoint for getting all legislators that govern over a given latitude
+ * and logitude.
+ *
+ * Requires:
+ *    -latitude
+ *    -logitude
+ */
 router.get('/getLegislators', function (req, res) {
     var urlObj = {
         host: config.legislatorHost,
@@ -35,6 +43,15 @@ router.get('/getLegislators', function (req, res) {
     });
 });
 
+/**
+ * API endpoint for getting all parties that list a given legislator as a
+ * beneficiary.
+ *
+ * Requires:
+ *     -startDate: Will return parties after this date.
+ *     -crpID: This is the sunlight foundation's ID for legilators.
+ *             getLegislators will return a CRP ID with each legislator object.
+ */
 router.get('/getPartiesForLegislator', function (req, res) {
     var urlObj = {
         host: config.partyTimeHost,
@@ -45,7 +62,7 @@ router.get('/getPartiesForLegislator', function (req, res) {
             apikey: config.apiKey
         }
     }
-    console.log('http:' + url.format(urlObj));
+
     http.get('http:' + url.format(urlObj), function (response) {
         var str = '';
         response.on('data', function (chunk) {
@@ -58,7 +75,6 @@ router.get('/getPartiesForLegislator', function (req, res) {
     })
     .on('error', function (e) {
         console.log("Got error: " + e.message);
-        console.log(e);
     });
 });
 
