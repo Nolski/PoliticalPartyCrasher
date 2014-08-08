@@ -7,7 +7,7 @@ Installation
 ------------
 We will need to install our server side dependencies using `npm`. To do that simply cd into the root dir and run `npm install`
 
-For our front end dependencies, we use `bower`. `cd` into `static` and run bower install.
+For our front end dependencies, we use `bower`. `cd static/` and run `bower install`.
 
 Running the Server
 ------------------
