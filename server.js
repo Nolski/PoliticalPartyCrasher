@@ -78,6 +78,32 @@ router.get('/getPartiesForLegislator', function (req, res) {
     });
 });
 
+router.get('/getContributionsForLegislator', function (req, res) {
+    var urlObj = {
+        host: config.contributionHost,
+        query: {
+            recipient_ft: req.query.recipientName,
+            amount: req.query.amountMin,
+            format: 'json',
+            apikey: config.apiKey
+        }
+    }
+
+    http.get('http:' + url.format(urlObj), function (response) {
+        var str = '';
+        response.on('data', function (chunk) {
+            str += chunk;
+        });
+
+        response.on('end', function () {
+            res.send(str);
+        });
+    })
+    .on('error', function (e) {
+        console.log("Got error for " + url.format(urlObj) + ": " + e.message);
+    });
+})
+
 app.use('/api', router);
 app.use(express.static(__dirname + '/static'));
 
