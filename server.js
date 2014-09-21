@@ -105,6 +105,7 @@ router.get('/getContributionsForLegislator', function (req, res) {
 
 app.use('/api', router);
 app.use(express.static(__dirname + '/static'));
+express.static.mime.define({'application/x-web-app-manifest+json': ['webapp']});
 
 app.listen(port);
 
