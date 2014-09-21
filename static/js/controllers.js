@@ -1,8 +1,14 @@
 "use strict";
 
-var moneyGateApp = angular.module('moneyGateApp', []);
+var moneyGateControllers = angular.module('moneyGateControllers', []);
 
-moneyGateApp.controller('MapCtrl', function ($scope, $http) {
+
+// TODO: split up into mutliple files
+moneyGateControllers.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.chamber = {
+        house: "Representative",
+        senate: "Senator"
+    }
 
     var customLayer = L.geoJson(null, {
         filter: function () {
@@ -47,8 +53,9 @@ moneyGateApp.controller('MapCtrl', function ($scope, $http) {
         });
         sidebar.show();
     }
+}]);
 
-});
+
 
 var map = L.map('map').setView([43.160552395407585, -97.60656356811523], 4),
     main = L.tileLayer(

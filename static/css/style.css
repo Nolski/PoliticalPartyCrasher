@@ -2,8 +2,81 @@ body, html {
     height:100%;
     padding: 0;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 #map {
     height:100%;
+}
+
+.legislator-info-header {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+
+.legislators {
+    list-style: none;
+}
+
+.legislators > li {
+    border-bottom: 1px solid #eee;
+}
+
+.legislator-name {
+    float: left;
+    margin-bottom: 0;
+}
+
+.legislator-party {
+    float: right;
+}
+
+.legislator-chamber {
+    font-weight: 300;
+    font-size: 17px;
+    margin: 0;
+}
+
+.legislator-info {
+    clear: left;
+}
+
+.legislator-footer {
+  margin: 15px 0;
+}
+
+.chart {
+    background: #eee;
+    padding: 3px;
+}
+
+.chart div {
+  width: 0;
+  transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+  box-shadow: 2px 2px 2px #666;
+}
+
+.tick {
+    fill: none;
+    stroke: #000;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }

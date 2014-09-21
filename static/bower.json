@@ -26,6 +26,9 @@
     "mapboxjs": "~1.6.1",
     "leaflet-sidebar": "~0.1.5",
     "cd113": "git@github.com:geobabbler/cd113.git",
-    "angular": "~1.2.21"
+    "angular": "~1.2.21",
+    "d3": "~3.4.11",
+    "momentjs": "~2.8.1",
+    "url": "git@github.com:anodynos/node2web_url.git#~3.24.10"
   }
 }

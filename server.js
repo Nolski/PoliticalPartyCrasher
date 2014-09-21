@@ -83,9 +83,8 @@ router.get('/getContributionsForLegislator', function (req, res) {
         host: config.contributionHost,
         query: {
             recipient_ft: req.query.recipientName,
-            amount: req.query.amountMin,
-            format: 'json',
-            apikey: config.apiKey
+            amount: '>|' + req.query.amountMin,
+            cycle: '2014',
         }
     }
 
