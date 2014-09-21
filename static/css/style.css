@@ -97,3 +97,15 @@ body, html {
   color: #fff;
   border-radius: 2px;
 }
+
+.install-button {
+    position: fixed;
+    left: 5px;
+    bottom: 5px;
+    height: 32px;
+    background-color: #EEE;
+    font-weight: 600;
+    box-shadow: none;
+    border-radius: 13px;
+    visibility: hidden;
+}
