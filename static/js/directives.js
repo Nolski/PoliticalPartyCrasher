@@ -9,7 +9,8 @@ moneyGateDirectives.directive('miniChart', ['$parse', function ($parse) {
         template: '<div class="graph"></div>', //TODO: replace this and generate id
         scope: { legislator: '=chartData' },
         link: function (scope, element, attrs) {
-            var chart = d3.select(element[0]),
+            var chart = d3.select(element[0])
+                    .attr("id", scope.legislator.first_name + scope.legislator.last_name),
                 margin = {top: 40, right: 20, bottom: 90, left: 40},
                 height = 260 - margin.top - margin.bottom,
                 divisions = 3,
@@ -39,6 +40,7 @@ moneyGateDirectives.directive('miniChart', ['$parse', function ($parse) {
     }
 }]);
 
+// Draw the axis
 function drawAxis(chart, margin, height, divisions, legislator) {
             // Append base graph svg to append to
             var svg = chart
@@ -64,8 +66,6 @@ function drawAxis(chart, margin, height, divisions, legislator) {
             // Create axis based upon x and y length
             var xAxis = d3.svg.axis()
                 .scale(x)
-                .tickValues(["Jan", "Feb", "Mar", "Apr", "May", "June",
-                            "July", "Aug", "Sept", "Oct", "Nov", "Dec"])
                 .orient('bottom');
             var yAxis = d3.svg.axis()
                 .scale(y)
@@ -129,11 +129,26 @@ function Grid() {
 function drawBoxes(legislator,data, height) {
     var barWidth = 49;
 
+
+    d3.select("#" + legislator.first_name + legislator.last_name)
+        .append("div")
+            .text(null)
+            .attr("id", "div-" + legislator.first_name)
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("visibility", "hidden")
+        .append("h1")
+            .text(legislator.first_name + " " + legislator.last_name)
+
+    var tooltip =  d3.select("#div-" + legislator.first_name);
+
     d3.select("#svg-" + legislator.first_name)
         .selectAll(".contriubtion")
             .data(data)
         .enter().append("rect")
-            .attr("class", "contribution")
+            .attr("class", function(d) {
+                return "contribution contributor-" + d.contributor_type
+            })
             .attr("x", function(d) {
                 return (d.x * barWidth) + ( (d.start[1] / 3) * barWidth) + (1);
             })
@@ -142,7 +157,7 @@ function drawBoxes(legislator,data, height) {
             })
             .attr("y", function(d) {
                 var chunkHeight = height / d.maxHeight;
-                console.log(d.maxHeight);
+                console.log(d.contributor_type);
 
                 return height - ( (chunkHeight * d.start[0]) + // Start Position
                                   ((height / d.maxHeight) * d.size)) // chunk size * block
@@ -153,6 +168,28 @@ function drawBoxes(legislator,data, height) {
 
                 return ( chunkHeight * d.size ) - 2;
             })
+            .on("mouseover", function(d){
+                tooltip.style("visibility", "visible")
+                    .append("h3")
+                        .text("Amount: " + d.amount)
+                    .append("p")
+                        .text("Contributor Name: " + d.contributor_name)
+                    .append("p")
+                        .text("Date: " + d.date)
+                    .append("p")
+                        .text("Contributor Type:" + d.contributor_type);
+
+            })
+            .on("mousemove", function(d){
+                tooltip
+                    .style("top", (event.pageY - 10)+"px")
+                    .style("left", (event.pageX + 10) + "px")
+            })
+            .on("mouseout", function(){
+                tooltip
+                    .text(null)
+                    .style("visibility", "hidden");
+            });
 }
 
 // Comparitor function for sorting contributions by date
@@ -182,7 +219,6 @@ function prepareData(data) {
             spaceNotFound = true;
 
         if(moment(contribution.date).get('month') != moment(currentDate).get('month')) {
-            console.log(grid._grid);
             grid.reset();
             currentDate = contribution.date;
         }
@@ -214,7 +250,6 @@ function prepareData(data) {
             row++;
         }
     });
-    console.log('======================================================')
 
     var x = -1;
 

@@ -80,3 +80,20 @@ body, html {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+.contributor-I {
+    fill: #B2AB00;
+}
+
+.contributor-C {
+    fill: #5E2AB2;
+}
+
+.tooltip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
