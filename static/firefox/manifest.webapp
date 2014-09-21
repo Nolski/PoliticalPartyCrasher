@@ -1,6 +1,6 @@
 {
   "name": "Political Party Crasher",
-  "description": "A visualization between the Political Party Time API and Sunlight Foundation's campaign contribution API."",
+  "description": "A visualization between the Political Party Time API and Sunlight Foundation's campaign contribution API.",
   "launch_path": "/index.html",
   "icons": {
     "512": "/firefox/icon_512.png",
