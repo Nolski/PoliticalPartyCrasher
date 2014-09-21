@@ -25,12 +25,24 @@
                     <div class="legislator-footer">
                         <a href="http://twitter.com/{{legislator.twitter_id}}">Twitter</a> | <a href="http://youtube.com/user/{{legislator.youtube_id}}">Youtube</a> | <a href="https://facebook.com/{{legislator.facebook_id}}">Facebook</a> | <a href="{{legislator.website}}">Website</a> </div> </li> </ul>
         </div>
+        <button class="install-button" onclick="install()">Install on FirefoxOS</button>
+        <script src="bower_components/momentjs/min/moment.min.js"></script>
+        <script src="bower_components/d3/d3.min.js"></script>
         <script>
             var request = navigator.mozApps.checkInstalled("http://nolski.rocks/firefox/manifest.webapp");
                 request.onsuccess = function() {
                   if (request.result) {
                     // we're installed
                   } else {
+                    // not installed
+			d3.select("#install-button")
+				.style("visibility", "visible");
+                  }
+                };
+                request.onerror = function() {
+                  alert('Error checking installation status: ' + this.error.message);
+                };  
+		function install() {
                         var request = navigator.mozApps.install("http://nolski.rocks/firefox/manifest.webapp");
                         request.onsuccess = function() {
                             window.location = "http://nolski.rocks/";
@@ -39,15 +51,8 @@
                         request.onerror = function() {
                           // whoops - this.error.name has details
                         };
-                    // not installed
-                  }
-                };
-                request.onerror = function() {
-                  alert('Error checking installation status: ' + this.error.message);
-                };  
+		}
         </script>
-        <script src="bower_components/momentjs/min/moment.min.js"></script>
-        <script src="bower_components/d3/d3.min.js"></script>
         <script src="bower_components/url/url.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/leaflet/dist/leaflet.js"></script>
