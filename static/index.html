@@ -29,29 +29,31 @@
         <script src="bower_components/momentjs/min/moment.min.js"></script>
         <script src="bower_components/d3/d3.min.js"></script>
         <script>
-            var request = navigator.mozApps.checkInstalled("http://nolski.rocks/firefox/manifest.webapp");
+            if(navigator.mozApps !== undefined) {
+                var request = navigator.mozApps.checkInstalled("http://nolski.rocks/firefox/manifest.webapp");
                 request.onsuccess = function() {
-                  if (request.result) {
-                    // we're installed
-                  } else {
-                    // not installed
-			d3.select("#install-button")
-				.style("visibility", "visible");
-                  }
+                    if (!request.result) {
+                        // not installed
+                        d3.select("#install-button")
+                            .style("visibility", "visible");
+                    }
+                };
+
+                request.onerror = function() {
+                    alert('Error checking installation status: ' + this.error.message);
+                }
+            }
+
+            function install() {
+                var request = navigator.mozApps.install("http://nolski.rocks/firefox/manifest.webapp");
+                request.onsuccess = function() {
+                    window.location = "http://nolski.rocks/";
+                    // great - display a message, or redirect to a launch page
                 };
                 request.onerror = function() {
-                  alert('Error checking installation status: ' + this.error.message);
-                };  
-		function install() {
-                        var request = navigator.mozApps.install("http://nolski.rocks/firefox/manifest.webapp");
-                        request.onsuccess = function() {
-                            window.location = "http://nolski.rocks/";
-                          // great - display a message, or redirect to a launch page
-                        };
-                        request.onerror = function() {
-                          // whoops - this.error.name has details
-                        };
-		}
+                    // whoops - this.error.name has details
+                };
+            }
         </script>
         <script src="bower_components/url/url.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>

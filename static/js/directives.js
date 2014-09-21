@@ -31,7 +31,9 @@ moneyGateDirectives.directive('miniChart', ['$parse', function ($parse) {
                     if(error) {
                         return console.warn(error.stack);
                     } else {
-                        drawBoxes( scope.legislator, prepareData(json), height );
+                        var width = parseInt(d3.select("#svg-" + scope.legislator.first_name)
+                            .attr("width"));
+                        drawBoxes( scope.legislator, prepareData(json), height, width );
                     }
                 }
             );
@@ -126,8 +128,8 @@ function Grid() {
 }
 
 // Draw svg contribtuion boxes
-function drawBoxes(legislator,data, height) {
-    var barWidth = 49;
+function drawBoxes(legislator,data, height, width) {
+    var barWidth = width / 12;
 
 
     d3.select("#" + legislator.first_name + legislator.last_name)
