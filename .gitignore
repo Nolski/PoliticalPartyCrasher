@@ -25,3 +25,6 @@ build/Release
 node_modules
 
 static/bower_components/
+static/js/scripts.min.js
+bower_components/
+
