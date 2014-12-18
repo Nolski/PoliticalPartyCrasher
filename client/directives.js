@@ -28,6 +28,7 @@ moneyGateDirectives.directive('miniChart', ['$parse', function ($parse) {
 
             d3.json("/api/" + destination.substring(1, destination.length),
                 function (error, json) {
+                    console.log('json', json);
                     if(error) {
                         return console.warn(error.stack);
                     } else {

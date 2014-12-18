@@ -1,14 +1,18 @@
-"use strict";
+'use strict';
 
-var moneyGateControllers = angular.module('moneyGateControllers', []);
+var moneyGateControllers = angular.module('moneyGateControllers', ['apiService']),
+    L = L || {},
+    omnivore = omnivore || {};
 
 
-// TODO: split up into mutliple files
-moneyGateControllers.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) {
+/**
+ * Main controller for map and all functionality within.
+ */
+moneyGateControllers.controller('MapCtrl', ['$scope', 'apiService', function ($scope, apiService) {
     $scope.chamber = {
-        house: "Representative",
-        senate: "Senator"
-    }
+        house: 'Representative',
+        senate: 'Senator'
+    };
 
     var customLayer = L.geoJson(null, {
         filter: function () {
@@ -32,7 +36,7 @@ moneyGateControllers.controller('MapCtrl', ['$scope', '$http', function ($scope,
 
             layer.on('click', function (event) {
                 $scope.getLegislators(layer.feature.properties);
-            })
+            });
         }
     });
 
@@ -44,15 +48,21 @@ moneyGateControllers.controller('MapCtrl', ['$scope', '$http', function ($scope,
 
     districtsLayer.addTo(map);
 
+    /**
+     * Controller method to get legislators for a given district and assign
+     * into scope.
+     *
+     * @param district : {} given district. Must include lat/lng
+     * @return void;
+     */
     $scope.getLegislators = function (district) {
-        var url = '/api/getLegislators?latitude=' + district.INTPTLAT +
-            '&longitude=' + district.INTPTLON;
 
-        $http.get(url).success(function (data) {
-            $scope.legislators = data.results;
-        });
-        sidebar.show();
-    }
+        apiService.SunlightAPI.getLegislators(district)
+            .success(function(data) {
+                $scope.legislators = data.results;
+                sidebar.show();
+            });
+    };
 }]);
 
 

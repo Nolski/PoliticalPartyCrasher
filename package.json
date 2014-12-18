@@ -12,6 +12,8 @@
     "follow-redirects": "0.0.3",
     "gulp": "~3.8.8",
     "gulp-concat": "~2.4.1",
-    "gulp-ngmin": "~0.3.0"
+    "gulp-ngmin": "~0.3.0",
+    "gulp-uglify": "~1.0.2",
+    "gulp-sourcemaps": "~1.2.8"
   }
 }

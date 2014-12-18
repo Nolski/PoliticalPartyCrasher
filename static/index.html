@@ -25,34 +25,6 @@
                     <div class="legislator-footer">
                         <a href="http://twitter.com/{{legislator.twitter_id}}">Twitter</a> | <a href="http://youtube.com/user/{{legislator.youtube_id}}">Youtube</a> | <a href="https://facebook.com/{{legislator.facebook_id}}">Facebook</a> | <a href="{{legislator.website}}">Website</a> </div> </li> </ul>
         </div>
-        <button class="install-button" onclick="install()">Install on FirefoxOS</button>
         <script src="js/scripts.min.js"></script>
-        <script>
-            if(navigator.mozApps !== undefined) {
-                var request = navigator.mozApps.checkInstalled("http://nolski.rocks/firefox/manifest.webapp");
-                request.onsuccess = function() {
-                    if (!request.result) {
-                        // not installed
-                        d3.select("#install-button")
-                            .style("visibility", "visible");
-                    }
-                };
-
-                request.onerror = function() {
-                    alert('Error checking installation status: ' + this.error.message);
-                }
-            }
-
-            function install() {
-                var request = navigator.mozApps.install("http://nolski.rocks/firefox/manifest.webapp");
-                request.onsuccess = function() {
-                    window.location = "http://nolski.rocks/";
-                    // great - display a message, or redirect to a launch page
-                };
-                request.onerror = function() {
-                    // whoops - this.error.name has details
-                };
-            }
-        </script>
     </body>
 </html>
